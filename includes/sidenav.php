@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="<?php echo BASE_URL.'dashboard.php' ?>" class="brand-link">
       <img src="<?php echo BASE_URL.'dist/img/AdminLTELogo.png' ?>" alt="Hijama Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Hijama</span>
+      <span class="brand-text font-weight-light">Techroll</span>
     </a>
 
     <!-- Sidebar -->
@@ -79,9 +79,9 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user-check"></i>
+              <i class="nav-icon fas fa-comment"></i>
               <p>
-                Category
+                Comments
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -89,33 +89,58 @@
               <li class="nav-item">
                 <a href="<?php echo BASE_URL.'category/manage-category.php' ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Manage categs</p>
+                  <p>Manage comments</p>
                 </a>
               </li>
             </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user-check"></i>
+              <i class="nav-icon fas fa-comment"></i>
               <p>
-                Products
+                Messages
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo BASE_URL.'products/create-product.php' ?>" class="nav-link">
+                <a href="<?php echo BASE_URL.'category/manage-category.php' ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage comments</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-blog"></i>
+              <p>
+                Blogs
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo BASE_URL.'blogs/create-blogs.php' ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Products</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo BASE_URL.'products/manage-products.php' ?>" class="nav-link">
+                <a href="<?php echo BASE_URL.'blogs/manage-blogs.php' ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Manage Products</p>
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="<?php echo BASE_URL.'logout.php' ?>" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Logout
+              </p>
+            </a>
           </li>
         </ul>
       </nav>
