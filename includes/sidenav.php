@@ -54,7 +54,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <?php if($_SESSION['active'] == 'admins'){ echo 'menu-open'; } ?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user-check"></i>
               <p>
@@ -77,7 +77,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <?php if($_SESSION['active'] == 'comments'){ echo 'menu-open'; } ?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-comment"></i>
               <p>
@@ -94,7 +94,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <?php if($_SESSION['active'] == 'messages'){ echo 'menu-open'; } ?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-comment"></i>
               <p>
@@ -111,7 +111,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <?php if($_SESSION['active'] == 'blogs'){ echo 'menu-open'; } ?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-blog"></i>
               <p>
@@ -134,7 +134,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item menu-open">
+          <li class="nav-item">
             <a href="<?php echo BASE_URL.'logout.php' ?>" class="nav-link">
               <i class="nav-icon fa-solid fa-right-from-bracket"></i>
               <p>

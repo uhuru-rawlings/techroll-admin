@@ -5,6 +5,7 @@
   if(!isset($_SESSION['adminuser'])){
     header("Location: ../index.php");
   }
+  $_SESSION['active'] = 'admins';
 ?>
 <!DOCTYPE html>
 <html lang="en">
