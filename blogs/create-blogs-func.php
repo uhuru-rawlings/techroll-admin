@@ -10,6 +10,18 @@
         $blog_image    = $_FILES['blog_image'];
         $description   = $_POST['description'];
 
+
+        $totalWords = str_word_count(strip_tags($description));
+        $minutes = floor($totalWords / 200);
+        $seconds = floor($totalWords % 200 / (200 / 60));
+        
+        $time;
+        if($minutes > 0){
+            $time = $minutes." Minutes";
+        }else{
+            $time = $seconds." Seconds";
+        }
+
         $conn = new Database();
         $db = $conn -> connection();
         $blogs = new Blogs($db);
@@ -21,7 +33,7 @@
             $blogs -> Blog_Slug       = $blog_slug;
             $blogs -> Blog_Image      = $image;
             $blogs -> Blogs_Body      = $description;
-            $blogs -> Blogs_Read_Time = "2 Minutes Read";
+            $blogs -> Blogs_Read_Time = $time;
             $save = $blogs -> saveBlog();
             if($save){
                 header("Location: create-blogs.php?success=Blog posted successfully, good day.");

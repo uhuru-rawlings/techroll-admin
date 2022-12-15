@@ -2,11 +2,11 @@
   include_once("../config.php");
   include_once("../database/Database.php");
   include_once("../models/Registration.php");
-  include_once("../models/Blogs.php");
+  include_once("../models/Messages.php");
   if(!isset($_SESSION['adminuser'])){
     header("Location: ../index.php");
   }
-  $_SESSION['active'] = 'blogs';
+  $_SESSION['active'] = 'messages';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,24 +86,33 @@
                     <?php
                         $conn = new Database();
                         $db   = $conn -> connection();
-                        $blogs = new Blogs($db);
-                        $results = $blogs -> getBlogs();
+                        $messages = new Messages($db);
+                        $results = $messages -> getMessages();
                         if($results){
                             foreach($results as $results){
                     ?>
-                            <div class="col-sm-6 p-4 bg-soft-primary blogs_texts">
+                            <div class="col-sm-6 p-4 bg-soft-primary blogs_texts" id="messages">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3><?php echo $results['Blog_Tittle']; ?></h3>
+                                        <h3><?php echo $results['Subject']; ?></h3>
                                     </div>
                                     <div class="card-body">
-                                        <p><?php echo $results['Blogs_Body']; ?></p>
+                                        <div>
+                                            <span>Name: <?php echo $results['Name']; ?></span>
+                                                <br>
+                                            <span>
+                                                Email: <a href="mailto:<?php echo $results['Email']; ?>"><?php echo $results['Email']; ?></a>
+                                            </span>
+                                                <br>
+                                            <span>
+                                                Phone: <a href="tel:<?php echo $results['phone']; ?>"><?php echo $results['phone']; ?></a>
+                                            </span>
+                                        </div>
+                                        <p><?php echo $results['message_content']; ?></p>
                                     </div>
                                     <div class="card-footer">
                                         <div class="row d-flex">
-                                            <a href=""><button class="btn btn-primary">Preview</button></a>
-                                            <a href="manage-blogs.php?edit=<?php echo $results['id']; ?>"><button class="btn btn-info">Edit</button></a>
-                                            <a href="delete-blogs.fun.php?delete=<?php echo $results['id']; ?>"><button class="btn btn-danger">Delete</button></a>
+                                            <a href="mark-read-fun.php?message=<?php echo $results['id']; ?>"><button class="btn btn-primary">Mark Read</button></a>
                                         </div>
                                     </div>
                                 </div>

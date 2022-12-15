@@ -16,6 +16,7 @@
   <title>Hijama | Create Admins</title>
 
   <!-- Google Font: Source Sans Pro -->
+  <script src="https://cdn.tiny.cloud/1/fy277kmb9yrlan45yrffhhs1p8q01s3rg4i7erd93j5uhm7f/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
   <link rel="stylesheet" href="../assets/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
@@ -151,7 +152,13 @@
   ?>
 </div>
 <!-- ./wrapper -->
-
+<script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+    });
+  </script>
 <!-- REQUIRED SCRIPTS -->
 <script src="../assets/js/all.min.js"></script>
 <script src="../assets/js/setSlug.js"></script>

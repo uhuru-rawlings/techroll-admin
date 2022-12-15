@@ -8,3 +8,21 @@
     text-overflow: ellipsis;
     -webkit-line-clamp: 4;
 }
+.blogs_texts .card-body{
+    max-height: 200px;
+    overflow: hidden;
+}
+.card-footer a{
+    margin-right: 10px;
+}
+#messages .card-body{
+    max-height: 200px;
+    overflow-y: scroll;
+}
+#messages p{
+    display: unset;
+    -webkit-box-orient: unset;
+    overflow-y: scroll;
+    text-overflow: unset;
+    -webkit-line-clamp: 1000;
+}

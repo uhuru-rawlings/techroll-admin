@@ -2,11 +2,11 @@
   include_once("../config.php");
   include_once("../database/Database.php");
   include_once("../models/Registration.php");
-  include_once("../models/Blogs.php");
+  include_once("../models/Comments.php");
   if(!isset($_SESSION['adminuser'])){
     header("Location: ../index.php");
   }
-  $_SESSION['active'] = 'blogs';
+  $_SESSION['active'] = 'comments';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,12 +56,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">List Blogs</h1>
+            <h1 class="m-0">Manage Comments</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo BASE_URL.'dashboard.php' ?>">Home</a></li>
-              <li class="breadcrumb-item active">List Blogs</li>
+              <li class="breadcrumb-item active">Manage Comments</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -73,7 +73,7 @@
     <div class="content">
       <div class="container-fluid">
         <div class="card">
-            <div class="card-header">List Blogs</div>
+            <div class="card-header">Manage Comments</div>
             <div class="card-body">
                 <?php
                     if(isset($_GET['success'])){
@@ -86,30 +86,48 @@
                     <?php
                         $conn = new Database();
                         $db   = $conn -> connection();
-                        $blogs = new Blogs($db);
-                        $results = $blogs -> getBlogs();
+                        $comments = new Comments($db);
+                        $results = $comments -> getComments();
                         if($results){
                             foreach($results as $results){
                     ?>
-                            <div class="col-sm-6 p-4 bg-soft-primary blogs_texts">
+                            <div class="col-sm-6 p-4 bg-soft-primary blogs_texts" id="messages">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3><?php echo $results['Blog_Tittle']; ?></h3>
+                                        <h3>#<?php echo $results['id']; ?></h3>
                                     </div>
                                     <div class="card-body">
-                                        <p><?php echo $results['Blogs_Body']; ?></p>
+                                        <div>
+                                            <span>Name: <?php echo $results['user_name']; ?></span>
+                                                <br>
+                                            <span>
+                                                Email: <a href="mailto:<?php echo $results['Email']; ?>"><?php echo $results['Email']; ?></a>
+                                            </span>
+                                                <br>
+                                            <span>
+                                                Phone: <a href="tel:<?php echo $results['Phone']; ?>"><?php echo $results['Phone']; ?></a>
+                                            </span>
+                                        </div>
+                                        <p><?php echo $results['comment']; ?></p>
                                     </div>
                                     <div class="card-footer">
                                         <div class="row d-flex">
-                                            <a href=""><button class="btn btn-primary">Preview</button></a>
-                                            <a href="manage-blogs.php?edit=<?php echo $results['id']; ?>"><button class="btn btn-info">Edit</button></a>
-                                            <a href="delete-blogs.fun.php?delete=<?php echo $results['id']; ?>"><button class="btn btn-danger">Delete</button></a>
+                                            <a href="approve-comment-fun.php?comment=<?php echo $results['id']; ?>"><button class="btn btn-primary">Approve</button></a>
+                                            <a href="delete-comment-fun.php?comment=<?php echo $results['id']; ?>"><button class="btn btn-danger">Delete</button></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                     <?php
                             }
+                        }else{
+                    ?>
+                    <div class="col-sm-12 p-4 bg-soft-primary blogs_texts" id="messages">
+                        <div class="alert alert-danger">
+                            No comments are currently available.
+                        </div>
+                    </div>
+                    <?php
                         }
                     ?>
                 </div>

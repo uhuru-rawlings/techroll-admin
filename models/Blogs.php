@@ -29,7 +29,7 @@
 
         public function getBlogs()
         {
-            $sql = "SELECT * FROM Blogs";
+            $sql = "SELECT * FROM Blogs ORDER BY id DESC";
             $query = $this -> conn -> prepare($sql);
             $query -> execute();
             if($row = $query -> rowCount() > 0){
@@ -66,6 +66,18 @@
                 $query = $this -> conn -> prepare($sql);
                 $query -> execute([$this -> Blog_Tittle,$this -> Blogs_Language,$this -> Blog_Slug,$this -> Blog_Image,$this -> Blogs_Body,$this -> Blogs_Read_Time,$this ->last_update,$this -> id]);
             }
+            if($query){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function deleteBlogs()
+        {
+            $sql = "DELETE FROM Blogs WHERE id = ?";
+            $query = $this -> conn -> prepare($sql);
+            $query -> execute([$this -> id]);
             if($query){
                 return true;
             }else{

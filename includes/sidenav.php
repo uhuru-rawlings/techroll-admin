@@ -87,7 +87,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo BASE_URL.'category/manage-category.php' ?>" class="nav-link">
+                <a href="<?php echo BASE_URL.'comments/manage-comments.php' ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Manage comments</p>
                 </a>
@@ -104,9 +104,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo BASE_URL.'category/manage-category.php' ?>" class="nav-link">
+                <a href="<?php echo BASE_URL.'messages/manage.messages.php' ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Manage comments</p>
+                  <p>Manage messages</p>
                 </a>
               </li>
             </ul>

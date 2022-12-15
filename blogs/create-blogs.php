@@ -15,6 +15,7 @@
   <title>Hijama | Create Admins</title>
 
   <!-- Google Font: Source Sans Pro -->
+  <script src="https://cdn.tiny.cloud/1/fy277kmb9yrlan45yrffhhs1p8q01s3rg4i7erd93j5uhm7f/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
   <link rel="stylesheet" href="../assets/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
@@ -108,7 +109,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Blog Content</label>
-                        <textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Type your description here..." required></textarea>
+                        <textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Type your description here..."></textarea>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Save Blogs" name="save" class="btn btn-primary">
@@ -136,7 +137,13 @@
   ?>
 </div>
 <!-- ./wrapper -->
-
+  <script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+    });
+  </script>
 <!-- REQUIRED SCRIPTS -->
 <script src="../assets/js/all.min.js"></script>
 <script src="../assets/js/setSlug.js"></script>
