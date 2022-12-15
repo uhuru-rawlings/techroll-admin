@@ -24,6 +24,22 @@
             }
         }
 
+        public function latestMessages()
+        {
+            $sql = "SELECT * FROM contact WHERE `status` = ? ORDER BY id DESC LIMIT 2";
+            $query = $this -> conn -> prepare($sql);
+            $query -> execute([$this -> status]);
+            $rows = $query -> rowCount();
+            if($query){
+                while($results = $query -> fetchAll(PDO::FETCH_ASSOC)){
+                    return $results;
+                }
+            }else{
+                return false;
+            }
+        }
+
+
         public function markRead()
         {
             $status = "Read";

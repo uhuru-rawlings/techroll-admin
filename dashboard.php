@@ -2,6 +2,8 @@
   include_once("config.php");
   include_once("database/Database.php");
   include_once("models/Registration.php");
+  include_once("models/Blogs.php");
+  include_once("models/Messages.php");
   if(!isset($_SESSION['adminuser'])){
     header("Location: index.php");
   }
@@ -23,6 +25,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/custom.css">
 </head>
 <!--
 `body` tag options:
@@ -69,90 +72,133 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Online Store Visitors</h3>
-                  <a href="javascript:void(0);">View Report</a>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="d-flex">
-                  <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">820</span>
-                    <span>Visitors Over Time</span>
-                  </p>
-                  <p class="ml-auto d-flex flex-column text-right">
-                    <span class="text-success">
-                      <i class="fas fa-arrow-up"></i> 12.5%
-                    </span>
-                    <span class="text-muted">Since last week</span>
-                  </p>
-                </div>
-                <!-- /.d-flex -->
-
-                <div class="position-relative mb-4">
-                  <canvas id="visitors-chart" height="200"></canvas>
-                </div>
-
-                <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> This Week
-                  </span>
-
-                  <span>
-                    <i class="fas fa-square text-gray"></i> Last Week
-                  </span>
-                </div>
-              </div>
-            </div>
-            <!-- /.card -->
-            <!-- /.card -->
+        <div class="card">
+          <div class="card-header">Admins</div>
+          <div class="card-body">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>Full Name</th>
+                          <th>Email</th>
+                          <th>Phone</th>
+                          <th>Status</th>
+                          <th>Last Login</th>
+                          <th>Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <?php
+                          $conn = new Database();
+                          $db = $conn -> connection();
+                          $users = new Registration($db);
+                          $user = $users -> getUsers();
+                          if($user){
+                              foreach($user as $user){
+                      ?>
+                      <tr>
+                          <td><?php echo $user['Fname']." ".$user['Lname'] ?></td>
+                          <td><?php echo $user['Email']?></td>
+                          <td><?php echo $user['Phone']?></td>
+                          <td><?php echo $user['status']?></td>
+                          <td><?php echo $user['last_login']?></td>
+                          <td>
+                            <a href="update-admins.php?edit=<?php echo $user['id']?>" class="text-success">Edit</a>
+                            <br>
+                            <a href="manage-admins-func.php?delete=<?php echo $user['id']?>" class="text-danger">Delete</a>
+                          </td>
+                      </tr>
+                      <?php
+                              }
+                          }
+                      ?>
+                  </tbody>
+              </table>
           </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Sales</h3>
-                  <a href="javascript:void(0);">View Report</a>
-                </div>
+        </div>
+        <div class="card mt-4">
+          <div class="card-header">Latest Blogs</div>
+          <div class="card-body">
+              <div class="row">
+                  <?php
+                      $conn = new Database();
+                      $db   = $conn -> connection();
+                      $blogs = new Blogs($db);
+                      $results = $blogs -> latestBlogs();
+                      if($results){
+                          foreach($results as $results){
+                  ?>
+                          <div class="col-sm-6 p-4 bg-soft-primary blogs_texts">
+                              <div class="card">
+                                  <div class="card-header">
+                                      <h3><?php echo $results['Blog_Tittle']; ?></h3>
+                                  </div>
+                                  <div class="card-body">
+                                      <p><?php echo $results['Blogs_Body']; ?></p>
+                                  </div>
+                                  <div class="card-footer">
+                                      <div class="row d-flex">
+                                          <a href=""><button class="btn btn-primary">Preview</button></a>
+                                          <a href="blogs/manage-blogs.php?edit=<?php echo $results['id']; ?>"><button class="btn btn-info">Edit</button></a>
+                                          <a href="blogs/delete-blogs.fun.php?delete=<?php echo $results['id']; ?>"><button class="btn btn-danger">Delete</button></a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                  <?php
+                          }
+                      }
+                  ?>
               </div>
-              <div class="card-body">
-                <div class="d-flex">
-                  <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">$18,230.00</span>
-                    <span>Sales Over Time</span>
-                  </p>
-                  <p class="ml-auto d-flex flex-column text-right">
-                    <span class="text-success">
-                      <i class="fas fa-arrow-up"></i> 33.1%
-                    </span>
-                    <span class="text-muted">Since last month</span>
-                  </p>
-                </div>
-                <!-- /.d-flex -->
-
-                <div class="position-relative mb-4">
-                  <canvas id="sales-chart" height="200"></canvas>
-                </div>
-
-                <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> This year
-                  </span>
-
-                  <span>
-                    <i class="fas fa-square text-gray"></i> Last year
-                  </span>
-                </div>
-              </div>
-            </div>
-            <!-- /.card -->
           </div>
-          <!-- /.col-md-6 -->
+        </div>
+        <div class="card mt-4">
+          <div class="card-header">Latest Messages</div>
+          <div class="card-body">
+              <div class="row">
+                  <?php
+                      $conn = new Database();
+                      $db   = $conn -> connection();
+                      $messages = new Messages($db);
+                      $results = $messages -> latestMessages();
+                      if($results){
+                          foreach($results as $results){
+                  ?>
+                          <div class="col-sm-6 p-4 bg-soft-primary blogs_texts" id="messages">
+                              <div class="card">
+                                  <div class="card-header">
+                                      <h3><?php echo $results['Subject']; ?></h3>
+                                  </div>
+                                  <div class="card-body">
+                                      <div>
+                                          <span>Name: <?php echo $results['Name']; ?></span>
+                                              <br>
+                                          <span>
+                                              Email: <a href="mailto:<?php echo $results['Email']; ?>"><?php echo $results['Email']; ?></a>
+                                          </span>
+                                              <br>
+                                          <span>
+                                              Phone: <a href="tel:<?php echo $results['phone']; ?>"><?php echo $results['phone']; ?></a>
+                                          </span>
+                                              <br>
+                                          <span>
+                                              Date: <?php echo $results['date_added']; ?>
+                                          </span>
+                                      </div>
+                                      <p><?php echo $results['message_content']; ?></p>
+                                  </div>
+                                  <div class="card-footer">
+                                      <div class="row d-flex">
+                                          <a href="mark-read-fun.php?message=<?php echo $results['id']; ?>"><button class="btn btn-primary">Mark Read</button></a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                  <?php
+                          }
+                      }
+                  ?>
+              </div>
+          </div>
         </div>
         <!-- /.row -->
       </div>
@@ -178,6 +224,7 @@
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
+<script src="assets/js/tables.js"></script>
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
