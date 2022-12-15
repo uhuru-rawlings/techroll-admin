@@ -16,7 +16,7 @@
             $file_name = explode(".",$filename);
             $accepted = array("jpg","png","jpeg");
             if(in_array(strtolower(end($file_name)),$accepted)){
-                $new_name = rand(1000,99999).$file_name;
+                $new_name = rand(1000,99999).$filename;
                 $location = "../uploads/".$new_name;
                 $move = move_uploaded_file($file_tmp_name,$location);
                 if($move){

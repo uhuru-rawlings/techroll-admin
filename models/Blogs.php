@@ -7,6 +7,7 @@
         public $Blogs_Body;
         public $Blogs_Read_Time;
         public $id;
+        public $last_update;
         private $conn;
 
         public function __construct($db)
@@ -56,14 +57,14 @@
 
         public function updateBlogs()
         {
-            if(empty($this -> product_image) || $this -> product_image == ""){
-                $sql = "UPDATE Blogs SET Blog_Tittle= ?,Blogs_Language = ?,Blog_Slug= ?,Blogs_Body = ?,Blogs_Read_Time = ? WHERE id =?";
+            if(empty($this -> Blog_Image) || $this -> Blog_Image == ""){
+                $sql = "UPDATE Blogs SET Blog_Tittle= ?,Blogs_Language = ?,Blog_Slug= ?,Blogs_Body = ?,Blogs_Read_Time = ?,Last_Update = ? WHERE id =?";
                 $query = $this -> conn -> prepare($sql);
-                $query -> execute([$this -> Blog_Tittle,$this -> Blogs_Language,$this -> Blog_Slug,$this -> Blogs_Body,$this -> Blogs_Read_Time,$this -> id]);
+                $query -> execute([$this -> Blog_Tittle,$this -> Blogs_Language,$this -> Blog_Slug,$this -> Blogs_Body,$this -> Blogs_Read_Time,$this ->last_update, $this -> id]);
             }else{
-                $sql = "UPDATE Blogs SET Blog_Tittle= ?,Blogs_Language = ?,Blog_Slug= ?,Blog_Image = ?,Blogs_Body = ?,Blogs_Read_Time = ? WHERE id =?";
+                $sql = "UPDATE Blogs SET Blog_Tittle= ?,Blogs_Language = ?,Blog_Slug= ?,Blog_Image = ?,Blogs_Body = ?,Blogs_Read_Time = ? ,Last_Update = ? WHERE id =?";
                 $query = $this -> conn -> prepare($sql);
-                $query -> execute([$this -> Blog_Tittle,$this -> Blogs_Language,$this -> Blog_Slug,$this -> Blog_Image,$this -> Blogs_Body,$this -> Blogs_Read_Time, $this -> id]);
+                $query -> execute([$this -> Blog_Tittle,$this -> Blogs_Language,$this -> Blog_Slug,$this -> Blog_Image,$this -> Blogs_Body,$this -> Blogs_Read_Time,$this ->last_update,$this -> id]);
             }
             if($query){
                 return true;

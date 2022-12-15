@@ -127,7 +127,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo BASE_URL.'blogs/manage-blogs.php' ?>" class="nav-link">
+                <a href="<?php echo BASE_URL.'blogs/list-blogs.php' ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Manage Products</p>
                 </a>
@@ -136,7 +136,7 @@
           </li>
           <li class="nav-item menu-open">
             <a href="<?php echo BASE_URL.'logout.php' ?>" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fa-solid fa-right-from-bracket"></i>
               <p>
                 Logout
               </p>

@@ -14,6 +14,7 @@
   <title>Hijama | Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="assets/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -189,5 +190,6 @@
 <script src="dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard3.js"></script>
+<script src="assets/js/all.min.js"></script>
 </body>
 </html>

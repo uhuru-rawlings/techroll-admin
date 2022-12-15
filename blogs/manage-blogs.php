@@ -2,6 +2,7 @@
   include_once("../config.php");
   include_once("../database/Database.php");
   include_once("../models/Registration.php");
+  include_once("../models/Blogs.php");
   if(!isset($_SESSION['adminuser'])){
     header("Location: ../index.php");
   }
@@ -14,6 +15,7 @@
   <title>Hijama | Create Admins</title>
 
   <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="../assets/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
@@ -71,7 +73,7 @@
         <div class="card">
             <div class="card-header">Update Blogs</div>
             <div class="card-body">
-                <form action="create-products-func.php" class="form" method="post" enctype="multipart/form-data">
+                <form action="update-blog-fun.php" class="form" method="post" enctype="multipart/form-data">
                 <?php
                     if(isset($_GET['success'])){
                         echo "<div class='alert alert-success'>{$_GET['success']}</div>";
@@ -79,35 +81,49 @@
                         echo "<div class='alert alert-danger'>{$_GET['error']}</div>";
                     }
                 ?>
+                <?php
+                    $conn = new Database();
+                    $db   = $conn -> connection();
+                    $blogs = new Blogs($db);
+                    $blogs -> id = $_GET['edit'];
+                    $results = $blogs -> getBlog();
+                    if($results){
+                ?>
+                    <div class="form-group">
+                        <input type="hidden" name="update" id="update" class="form-control" placeholder="Enter Slug e.g first-blog-website" value="<?php echo $results['id'] ?>" required>
+                    </div>
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <label for="blog_title">Title</label>
-                            <input type="text" name="blog_title" id="blog_title" class="form-control" placeholder="Enter Title">
+                            <input type="text" value="<?php echo $results['Blog_Tittle'] ?>" name="blog_title" id="blog_title" class="form-control" placeholder="Enter Title">
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="blog_language">Language</label>
                             <select name="blog_language" id="blog_language" class="form-control">
-                                <option value="Php">Php</option>
-                                <option value="Angular">Angular</option>
-                                <option value="Django">Django</option>
-                                <option value="React">React</option>
+                                <option <?php if($results['Blogs_Language'] == "Php"){ echo "selected"; } ?> value="Php">Php</option>
+                                <option <?php if($results['Blogs_Language'] == "Angular"){ echo "selected"; } ?> value="Angular">Angular</option>
+                                <option <?php if($results['Blogs_Language'] == "Django"){ echo "selected"; } ?> value="Django">Django</option>
+                                <option <?php if($results['Blogs_Language'] == "React"){ echo "selected"; } ?> value="React">React</option>
                             </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <label for="blog_slug">Blog Slug</label>
-                            <input type="text" name="blog_slug" id="blog_slug" class="form-control" placeholder="Enter Slug e.g first-blog-website" required>
+                            <input type="text" name="blog_slug" id="blog_slug" class="form-control" placeholder="Enter Slug e.g first-blog-website" value="<?php echo $results['Blog_Slug'] ?>" required>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="blog_image">Blog Image</label>
-                            <input type="file" name="blog_image" id="blog_image" class="form-control" placeholder="Upload Blog Image" required>
+                            <input type="file" name="blog_image" id="blog_image" class="form-control" placeholder="Upload Blog Image">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="description">Blog Content</label>
-                        <textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Type your description here..." required></textarea>
+                        <textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Type your description here..." required><?php echo $results['Blogs_Body'] ?></textarea>
                     </div>
+                <?php
+                    }
+                ?>
                     <div class="form-group">
                         <input type="submit" value="Save Blogs" name="save" class="btn btn-primary">
                     </div>
@@ -136,6 +152,7 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
+<script src="../assets/js/all.min.js"></script>
 <script src="../assets/js/setSlug.js"></script>
 <!-- jQuery -->
 <script src="../plugins/jquery/jquery.min.js"></script>

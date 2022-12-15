@@ -1,3 +1,10 @@
 .form-control{
     height: 45px;
 }
+.blogs_texts p{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+}

@@ -14,6 +14,7 @@
   <title>Hijama | Create Admins</title>
 
   <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="../assets/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
@@ -71,7 +72,7 @@
         <div class="card">
             <div class="card-header">Create Blogs</div>
             <div class="card-body">
-                <form action="create-products-func.php" class="form" method="post" enctype="multipart/form-data">
+                <form action="create-blogs-func.php" class="form" method="post" enctype="multipart/form-data">
                 <?php
                     if(isset($_GET['success'])){
                         echo "<div class='alert alert-success'>{$_GET['success']}</div>";
@@ -136,6 +137,7 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
+<script src="../assets/js/all.min.js"></script>
 <script src="../assets/js/setSlug.js"></script>
 <!-- jQuery -->
 <script src="../plugins/jquery/jquery.min.js"></script>
