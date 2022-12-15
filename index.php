@@ -11,7 +11,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
-    <title>Document</title>
+    <title>Techroll Blogs | Login</title>
 </head>
 <body>
     <div class="container">
