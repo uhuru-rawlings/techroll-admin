@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="<?php echo BASE_URL.'dashboard.php' ?>" class="brand-link">
-      <img src="<?php echo BASE_URL.'dist/img/AdminLTELogo.png' ?>" alt="Hijama Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="<?php echo BASE_URL.'dist/img/AdminLTELogo.png' ?>" alt="Techroll Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Techroll</span>
     </a>
 

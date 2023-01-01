@@ -16,14 +16,14 @@
 
         public function userLogin()
         {
-            $sql   = "SELECT * FROM Registration WHERE Email = ?";
+            $sql   = "SELECT * FROM registration WHERE useremail = ?";
             $query = $this-> conn -> prepare($sql);
             $query -> execute([$this -> Email]);
             if($query -> rowCount() > 0){
                 while($results = $query -> fetch(PDO::FETCH_ASSOC)){
-                    $res = $results['Password'];
+                    $res = $results['passwords'];
                     if(password_verify($this -> Password, $res)){
-                        $sql = "UPDATE Registration SET `last_login` = ? WHERE Email = ?";
+                        $sql = "UPDATE registration SET `last_login` = ? WHERE useremail = ?";
                         $query = $this -> conn -> prepare($sql);
                         $dates = date("Y-m-d H:i:s");
                         $query -> execute([$dates,$this -> Email]);
@@ -44,13 +44,13 @@
 
         public function saveUser()
         {
-            $sql   = "SELECT * FROM Registration WHERE Email = ?";
+            $sql   = "SELECT * FROM registration WHERE useremail = ?";
             $query = $this-> conn -> prepare($sql);
             $query -> execute([$this -> Email]);
             if($query -> rowCount() > 0){
                 return false;
             }else{
-                $sql = "INSERT INTO Registration(`Fname`,`Lname`,`Email`,`Phone`,`Password`,`status`) VALUES(?,?,?,?,?,?)";
+                $sql = "INSERT INTO registration(`Fname`,`Lname`,`useremail`,`Phone`,`passwords`,`status`) VALUES(?,?,?,?,?,?)";
                 $query = $this -> conn -> prepare($sql);
                 $query -> execute([$this -> Fname,$this -> Lname,$this -> Email,$this -> Phone,password_hash($this -> Password, PASSWORD_DEFAULT),$this -> status]);
                 if($query){
@@ -63,7 +63,7 @@
 
         public function getUsers()
         {
-            $sql = "SELECT * FROM Registration";
+            $sql = "SELECT * FROM registration";
             $query = $this -> conn -> prepare($sql);
             $query -> execute();
             $rows = $query -> rowCount();
@@ -78,7 +78,7 @@
 
         public function getUser()
         {
-            $sql = "SELECT * FROM Registration WHERE id = ?";
+            $sql = "SELECT * FROM registration WHERE id = ?";
             $query = $this ->conn -> prepare($sql);
             $query -> execute([$this -> update]);
             if($query -> rowCount() > 0){
@@ -92,7 +92,7 @@
 
         public function getUserProfile()
         {
-            $sql = "SELECT * FROM Registration WHERE Email = ?";
+            $sql = "SELECT * FROM registration WHERE useremail = ?";
             $query = $this ->conn -> prepare($sql);
             $query -> execute([$this -> Email]);
             if($query -> rowCount() > 0){
@@ -106,13 +106,13 @@
 
         public function updateUser()
         {
-            $sql = "SELECT * FROM Registration WHERE id = ?";
+            $sql = "SELECT * FROM registration WHERE id = ?";
             $query = $this -> conn -> prepare($sql);
             $query -> execute([$this -> update]);
             $rows = $query -> rowCount();
             if($rows > 0){
                 if(empty($this -> Password) || $this -> Password == ""){
-                    $sql = "UPDATE Registration SET Fname = ?,Lname = ?, Email =?, Phone = ? WHERE id = ?";
+                    $sql = "UPDATE registration SET Fname = ?,Lname = ?, Email =?, Phone = ? WHERE id = ?";
                     $query = $this -> conn -> prepare($sql);
                     $query -> execute([$this -> Fname,$this -> Lname,$this -> Email,$this -> Phone,$this -> update]);
                     if($query){
@@ -121,7 +121,7 @@
                         return false;
                     }
                 }else{
-                    $sql = "UPDATE Registration SET Fname = ?,Lname = ?, Email =?, Phone = ?,Password = ? WHERE id = ?";
+                    $sql = "UPDATE registration SET Fname = ?,Lname = ?, Email =?, Phone = ?,Password = ? WHERE id = ?";
                     $query = $this -> conn -> prepare($sql);
                     $query -> execute([$this -> Fname,$this -> Lname,$this -> Email,$this -> Phone,password_hash($this -> Phone,PASSWORD_DEFAULT),$this -> update]);
                     if($query){
@@ -137,7 +137,7 @@
 
         public function deleteUser()
         {
-            $sql = "DELETE FROM Registration WHERE id = ?";
+            $sql = "DELETE FROM registration WHERE id = ?";
             $query = $this -> conn -> prepare($sql);
             $query -> execute([$this -> update]);
             if($query){

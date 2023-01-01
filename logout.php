@@ -8,4 +8,6 @@
     }else{
         header("Location: index.php?error=You are not logged in, please login to proceed.");
     }
+
 ?>
+

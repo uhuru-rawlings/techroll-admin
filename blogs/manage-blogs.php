@@ -97,15 +97,15 @@
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <label for="blog_title">Title</label>
-                            <input type="text" value="<?php echo $results['Blog_Tittle'] ?>" name="blog_title" id="blog_title" class="form-control" placeholder="Enter Title">
+                            <input type="text" value="<?php echo $results['blog_title'] ?>" name="blog_title" id="blog_title" class="form-control" placeholder="Enter Title">
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="blog_language">Language</label>
                             <select name="blog_language" id="blog_language" class="form-control">
-                                <option <?php if($results['Blogs_Language'] == "Php"){ echo "selected"; } ?> value="Php">Php</option>
-                                <option <?php if($results['Blogs_Language'] == "Angular"){ echo "selected"; } ?> value="Angular">Angular</option>
-                                <option <?php if($results['Blogs_Language'] == "Django"){ echo "selected"; } ?> value="Django">Django</option>
-                                <option <?php if($results['Blogs_Language'] == "React"){ echo "selected"; } ?> value="React">React</option>
+                                <option <?php if($results['language'] == "Php"){ echo "selected"; } ?> value="Php">Php</option>
+                                <option <?php if($results['language'] == "Angular"){ echo "selected"; } ?> value="Angular">Angular</option>
+                                <option <?php if($results['language'] == "Django"){ echo "selected"; } ?> value="Django">Django</option>
+                                <option <?php if($results['language'] == "React"){ echo "selected"; } ?> value="React">React</option>
                             </select>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Blog Content</label>
-                        <textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Type your description here..." required><?php echo $results['Blogs_Body'] ?></textarea>
+                        <textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Type your description here..." required><?php echo $results['blog_content'] ?></textarea>
                     </div>
                 <?php
                     }

@@ -94,10 +94,10 @@
                             <div class="col-sm-6 p-4 bg-soft-primary blogs_texts">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3><?php echo $results['Blog_Tittle']; ?></h3>
+                                        <h3><?php echo $results['blog_title']; ?></h3>
                                     </div>
                                     <div class="card-body">
-                                        <p><?php echo $results['Blogs_Body']; ?></p>
+                                        <p><?php echo $results['blog_content']; ?></p>
                                     </div>
                                     <div class="card-footer">
                                         <div class="row d-flex">
