@@ -10,9 +10,9 @@
         public function __construct()
         {
             $this -> db_host     = "127.0.0.1";
-            $this -> db_user     = "root";
-            $this -> db_password = "";
-            $this -> db_name     = "Techroll";
+            $this -> db_user     = "techroll_techroll";
+            $this -> db_password = "BNv!A@sAdTm0";
+            $this -> db_name     = "techroll_techroll";
         }
 
         public function connection()

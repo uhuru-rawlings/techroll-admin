@@ -1,4 +1,5 @@
 <?php
+    session_start();
     if(isset($_POST['username'])){
         include_once("database/Database.php");
         include_once("models/Registration.php");

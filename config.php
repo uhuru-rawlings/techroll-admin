@@ -5,6 +5,6 @@
     if($_SERVER['HTTP_HOST'] == "127.0.0.1" || $_SERVER['HTTP_HOST'] == "localhost"){
         define('BASE_URL', 'http://localhost/Techroll/');
     }else{
-        define('BASE_URL', 'https://admin.techrollblogs.com');
+        define('BASE_URL', 'https://www.admin.techrollblogs.com/');
     }
 ?>
