@@ -123,13 +123,13 @@
               <li class="nav-item">
                 <a href="<?php echo BASE_URL.'blogs/create-blogs.php' ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Products</p>
+                  <p>Add Blogs</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="<?php echo BASE_URL.'blogs/list-blogs.php' ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Manage Products</p>
+                  <p>Manage Blogs</p>
                 </a>
               </li>
             </ul>
